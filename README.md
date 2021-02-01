@@ -1,29 +1,34 @@
-# README #
+# EventAPI test project
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## Description
 
-### What is this repository for? ###
+This project show basic usage Django, DRF, DateTimeRangeField.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Folder structure 
 
-### How do I get set up? ###
+Brief contains task brief, with project cryteria. `eventapi` directory contains all necessary files for
+django application, with tests and docker's files to simplify start-up.
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+## Installation and test
 
-### Contribution guidelines ###
+Project provides docker-compose file to simplify start-up. It provides postgres container and web container with
+python and django.
 
-* Writing tests
-* Code review
-* Other guidelines
+To startup project simple execute (you should have installed docker and docker-compose)
 
-### Who do I talk to? ###
+    :::bash
+    cd eventapi
+    docker-compose up
 
-* Repo owner or admin
-* Other community or team contact
+This command start database, django application and migrate data.
+
+You may also run tests
+
+    :::bash
+    docker-compose run web runtest
+
+
+## Knowing issues
+
+At first run application can't connect to database. Application container tires connect to database but database isn't started yet. Rerun
+`docker-compose up` temporary solve problem.

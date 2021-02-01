@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    image: postgres:9.4
+    volumes:
+      - data-postgresql:/var/lib/postgresql
+    environment:
+      - DBNAME=test
+      - POSTGRES_DB=test
+      - POSTGRES_USERNAME=test
+      - POSTGRES_PASSWORD=test
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "1"
+  web:
+    build: images/django_app
+#    command: runserver
+    command: sleep 99999
+    volumes:
+      - ./services/django_app:/srv
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - SHELL=/bin/bash
+      - PG_HOST=db
+      - PG_DATABASE=test
+      - PG_USER=postgres
+      - PG_PASS=test
+
+volumes:
+   data-postgresql:
+     external: true

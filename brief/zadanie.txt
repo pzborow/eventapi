@@ -1,0 +1,64 @@
+Python Developer - calendar application
+
+Context
+
+Build a simple RESTful API that manages calendar events and the availability of
+conference rooms. The application is meant to run as a multitenant service: many
+companies keep their data on one central server.
+To keep it simple, assume the user model has one extra UUID field, company_id.
+Users with the same company_id belong to the same company.
+
+Business requirements
+
+Every user has their own default timezone. All endpoints are timezone-aware and return
+results in the timezone of the logged-in user.
+A user management API is not needed: for this task users can be managed in the Django
+admin panel or in the Django shell.
+The business domain has two core resources:
+1. Conference room (location):
+a. Manager (a platform user)
+b. Name
+c. Address
+2. Calendar event (meeting):
+a. Owner (a platform user)
+b. Event name
+c. Meeting agenda
+d. Start
+e. End
+f. Participants (platform users, given by their e-mail addresses)
+g. Location (optional)
+
+Besides creating and retrieving these resources, the API lets clients:
+- get the events taking place on a given day (?day=2020-12-12)
+- get the events taking place in a given conference room (?location_id=6fb94459)
+- search events by name or agenda (?query=sprint+retrospective)
+- see conference rooms as nested, serialized objects in the list of events
+Update and delete operations are not needed.
+Three more rules apply:
+- the owner of a meeting is always the user who created it
+- a meeting lasts at most 8 hours
+- an event is visible only to its participants and to the manager of its conference room
+
+Technical requirements
+
+Use Django and Django REST Framework. Other stacks (e.g. Flask, Django-Graphene) are not
+accepted.
+
+Notes
+
+The task is a starting point for the technical interview that follows and should not take
+much time. It is meant for both Junior Python Developers and Python Developers; more
+attention to detail is expected from the latter.
+Prefer the solutions the framework recommends. You may focus on chosen aspects to show
+your skills, e.g. by making good use of Django's (or DRF's) built-in mechanisms, or by
+leaving TODO notes for more advanced ideas.
+Do not add business requirements that are not listed here, e.g. real room availability
+management. Show at least one unit test, but do not aim for 100% coverage.
+
+Evaluation criteria
+
+The solution will be judged on:
+- code quality
+- knowledge of the framework
+- speed and scalability
+- data protection and security
