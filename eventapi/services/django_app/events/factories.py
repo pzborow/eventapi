@@ -1,23 +1,16 @@
 import datetime
 
 import factory
-from factory.fuzzy import (
-    FuzzyChoice,
-    FuzzyInteger,
-    FuzzyNaiveDateTime,
-    FuzzyText,
-)
-
-from .models import (
-    Location,
-    Meeting,
-)
 from users.factories import UserFactory
+
+from .models import Location, Meeting
+
 
 class LocationFactory(factory.DjangoModelFactory):
     name = factory.Faker("name")
     address = factory.Faker("address")
     manager = factory.SubFactory(UserFactory)
+
     class Meta:
         model = Location
 
@@ -35,9 +28,9 @@ class MeetingFactory(factory.DjangoModelFactory):
     def time_range(self):
         from django.utils import timezone
         from psycopg2.extras import DateRange, DateTimeTZRange
+
         now = timezone.now()
         start = now - datetime.timedelta(hours=1)
         stop = now + datetime.timedelta(hours=1)
         timeslot = DateTimeTZRange(start, stop, "[]")
         return timeslot
-

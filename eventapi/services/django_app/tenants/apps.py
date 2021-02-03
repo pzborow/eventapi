@@ -4,8 +4,8 @@ from django.apps import AppConfig
 
 
 class TenantsConfig(AppConfig):
-    name = 'tenants'
-    verbose_name = 'Tenants'
+    name = "tenants"
+    verbose_name = "Tenants"
 
     def ready(self):
         import tenants.handlers

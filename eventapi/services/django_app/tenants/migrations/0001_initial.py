@@ -1,6 +1,6 @@
-from django.db import models, migrations
 import django.contrib.postgres.fields
 import django_tenants.postgresql_backend.base
+from django.db import migrations, models
 
 
 class Migration(migrations.Migration):

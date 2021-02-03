@@ -10,14 +10,14 @@ DRF, DateTimeRangeField and Django-tenants.
 
 This project is rather POC than ready for use code.
 The purpose for which it was created was to meet the
-requirements of the task, but also for fun and learning the 
+requirements of the task, but also for fun and learning the
 multitenant approach. I tried to keep business requirements,
 but I feel free with architecture and simplification tips.
 
 
-## Folder structure 
+## Folder structure
 
-`brief` contains task brief, with task criteria. `eventapi` directory 
+`brief` contains task brief, with task criteria. `eventapi` directory
 contains all necessary files for django application,
 with tests and docker's files to simplify start-up.
 Application structure bases on django-tenats teneant_tutorial.

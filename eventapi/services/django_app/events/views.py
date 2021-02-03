@@ -1,20 +1,11 @@
-import logging
-
 from django.db.models import Q
-from django.http import JsonResponse
-from django.shortcuts import get_list_or_404
-from rest_framework.decorators import action, api_view, permission_classes
-from rest_framework.generics import get_object_or_404
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin
-from rest_framework.response import Response
-from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND
-from rest_framework.viewsets import GenericViewSet
-
 from events.filters import MeetingFilter
-from events.permissions import IsPermitted
-from events.serializers import MeetingListSerializer, MeetingCreateSerializer
-
 from events.models import Meeting
+from events.permissions import IsPermitted
+from events.serializers import MeetingCreateSerializer, MeetingListSerializer
+from rest_framework.mixins import (CreateModelMixin, ListModelMixin,
+                                   RetrieveModelMixin)
+from rest_framework.viewsets import GenericViewSet
 
 
 class MeetingList(CreateModelMixin, ListModelMixin, GenericViewSet):
@@ -35,8 +26,6 @@ class MeetingList(CreateModelMixin, ListModelMixin, GenericViewSet):
         if user.is_superuser:
             return queryset
         queryset = queryset.filter(
-            Q(owner=user) |
-            Q(location__manager=user) |
-            Q(participants=user)
+            Q(owner=user) | Q(location__manager=user) | Q(participants=user)
         )
         return queryset

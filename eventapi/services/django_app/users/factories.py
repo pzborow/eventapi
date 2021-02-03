@@ -1,6 +1,8 @@
 # factories.py
 import factory
+
 from . import models
+
 
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:

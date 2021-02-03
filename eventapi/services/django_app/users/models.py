@@ -3,4 +3,4 @@ from timezone_field import TimeZoneField
 
 
 class User(AbstractUser):
-    time_zone = TimeZoneField(default='UTC')
+    time_zone = TimeZoneField(default="UTC")

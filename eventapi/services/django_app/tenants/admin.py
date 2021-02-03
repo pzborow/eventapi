@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from tenants.models import Client, Domain
 
 
@@ -10,5 +9,4 @@ class DomainInline(admin.TabularInline):
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
     inlines = [DomainInline]
-    list_display = ('schema_name', 'name')
-
+    list_display = ("schema_name", "name")
