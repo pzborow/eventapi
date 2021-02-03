@@ -48,7 +48,7 @@ RUN pip install -r requirements.txt
 RUN mkdir -p /usr/local/share/doc/run
 ADD help.txt /usr/local/share/doc/run/help.txt
 ADD run.sh /usr/local/sbin/run
-#ENTRYPOINT ["/usr/local/sbin/run"]
+ENTRYPOINT ["/usr/local/sbin/run"]
 
 #CMD ["help"] # Default to showing the usage text
 

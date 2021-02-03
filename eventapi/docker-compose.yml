@@ -15,8 +15,7 @@ services:
         max-file: "1"
   web:
     build: images/django_app
-#    command: runserver
-    command: sleep 99999
+#    command: sleep 99999
     volumes:
       - ./services/django_app:/srv
     ports:
@@ -29,6 +28,7 @@ services:
       - PG_DATABASE=event_api
       - PG_USER=event_api
       - PG_PASS=test
+      - DEFAULT_RUN_COMMAND=runserver
 
 volumes:
    data-postgresql-eventapi:
