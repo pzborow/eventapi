@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
 from django.db.utils import DatabaseError
 from django.views.generic import FormView, TemplateView, CreateView
-from customers.forms import GenerateUsersForm
-from customers.models import Client
+from tenants.forms import GenerateUsersForm
+from tenants.models import Client
 from random import choice
 from tenant_only.models import UploadFile
 

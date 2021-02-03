@@ -49,7 +49,7 @@ class Client(TenantMixin):
     <p>Let's create a tenant for our main website, located at <code>{{ hostname }}</code>. Open up a shell and enter the <code>django</code> shell:</p>
     <pre>$ ./manage.py shell</pre>
     <p>To create a tenant run the following commands:</p>
-<pre>from customers.models import Client</pre>
+<pre>from tenants.models import Client</pre>
 <pre>
 Client(schema_name='public',
     name='Trendy SaSS',
@@ -73,7 +73,7 @@ Client(schema_name='public',
     <p>We can now add tenants using these URLs and our project will be able to find them and identify them as our tenants. Back to the django shell:</p>
 
 <pre>$ ./manage.py shell</pre>
-<pre>from customers.models import Client, Domain</pre>
+<pre>from tenants.models import Client, Domain</pre>
 <pre>
 tenant = Client(schema_name='tenant1',
     name='Tenant1 - Awesome',
@@ -84,7 +84,7 @@ tenant.save()
     <p>Saving a tenant that didn't exist before will create their schema and sync <code>TENANT_APPS</code> automatically. You should see
     the following lines as the result.</p>
   <pre>Operations to perform:
-  Synchronize unmigrated apps: customers, django_tenants
+  Synchronize unmigrated apps: tenants, django_tenants
   Apply all migrations: contenttypes, auth, sessions
 Synchronizing apps without migrations:
   Creating tables...

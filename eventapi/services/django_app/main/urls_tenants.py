@@ -1,4 +1,4 @@
-from customers.views import TenantView, TenantViewRandomForm, TenantViewFileUploadCreate
+from tenants.views import TenantView, TenantViewRandomForm, TenantViewFileUploadCreate
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView

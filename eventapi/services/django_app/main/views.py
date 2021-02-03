@@ -3,7 +3,7 @@ from django.conf import settings
 from django.db import utils
 from django.views.generic import TemplateView
 from django_tenants.utils import remove_www
-from customers.models import Client
+from tenants.models import Client
 
 
 class HomeView(TemplateView):

@@ -148,7 +148,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 SHARED_APPS = (
     'django_tenants',  # mandatory
-    'customers',  # you must list the app where your tenant model resides in
+    'tenants',  # you must list the app where your tenant model resides in
 
     # 'django.contrib.admin',
     # 'django.contrib.auth',
@@ -167,9 +167,9 @@ TENANT_APPS = (
     'tenant_only',
 )
 
-TENANT_MODEL = "customers.Client"  # app.Model
+TENANT_MODEL = "tenants.Client"  # app.Model
 
-TENANT_DOMAIN_MODEL = "customers.Domain"  # app.Model
+TENANT_DOMAIN_MODEL = "tenants.Domain"  # app.Model
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 

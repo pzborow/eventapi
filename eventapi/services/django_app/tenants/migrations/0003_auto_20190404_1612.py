@@ -7,7 +7,7 @@ import django_tenants.postgresql_backend.base
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('customers', '0002_auto_20171207_1616'),
+        ('tenants', '0002_auto_20171207_1616'),
     ]
 
     operations = [

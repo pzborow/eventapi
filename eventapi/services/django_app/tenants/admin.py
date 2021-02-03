@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from customers.models import Client, Domain
+from tenants.models import Client, Domain
 
 
 class DomainInline(admin.TabularInline):

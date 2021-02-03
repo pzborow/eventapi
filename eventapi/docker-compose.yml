@@ -5,9 +5,8 @@ services:
     volumes:
       - data-postgresql-eventapi:/var/lib/postgresql
     environment:
-      - DBNAME=test
-      - POSTGRES_DB=test
-      - POSTGRES_USERNAME=test
+      - POSTGRES_DB=event_api
+      - POSTGRES_USER=event_api
       - POSTGRES_PASSWORD=test
     logging:
       driver: "json-file"
@@ -27,8 +26,8 @@ services:
     environment:
       - SHELL=/bin/bash
       - PG_HOST=db
-      - PG_DATABASE=test
-      - PG_USER=postgres
+      - PG_DATABASE=event_api
+      - PG_USER=event_api
       - PG_PASS=test
 
 volumes:
