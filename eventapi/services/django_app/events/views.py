@@ -1,5 +1,6 @@
 import logging
 
+from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import get_list_or_404
 from rest_framework.decorators import action, api_view, permission_classes
@@ -10,6 +11,7 @@ from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND
 from rest_framework.viewsets import GenericViewSet
 
 from events.filters import MeetingFilter
+from events.permissions import IsPermitted
 from events.serializers import MeetingSerializer
 
 from events.models import Meeting
@@ -19,6 +21,18 @@ class MeetingList(ListModelMixin, GenericViewSet):
     queryset = Meeting.objects.all()
     serializer_class = MeetingSerializer
     filterset_class = MeetingFilter
-    # permission_classes = [IsPermitted]
+    permission_classes = [IsPermitted]
     filter_fields = ("location_id", "day")
     search_fields = ("meeting_agenda", "event_name")
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user = self.request.user
+        if user.is_superuser:
+            return queryset
+        queryset = queryset.filter(
+            Q(owner=user) |
+            Q(location__manager=user) |
+            Q(participants=user)
+        )
+        return queryset
