@@ -69,7 +69,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = '/srv/static/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -85,6 +85,8 @@ STATICFILES_DIRS = (
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
+    "django_tenants.staticfiles.finders.TenantFileSystemFinder",
+    # Must be first
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
@@ -153,6 +155,8 @@ SHARED_APPS = (
     'tenants',  # you must list the app where your tenant model resides in
 
     'django.contrib.contenttypes',
+    "rest_framework",
+    "django_filters",
 )
 
 TENANT_APPS = (
@@ -161,6 +165,7 @@ TENANT_APPS = (
     'django.contrib.admin',
     'django.contrib.sessions',
     'django.contrib.messages',
+    "django.contrib.staticfiles",
     'timezone_field',
     'users',
     'events',
@@ -207,3 +212,15 @@ LOGGING = {
 
 DEFAULT_FILE_STORAGE = "django_tenants.files.storage.TenantFileSystemStorage"
 MULTITENANT_RELATIVE_MEDIA_ROOT = "uploaded_files"
+MULTITENANT_STATICFILES_DIRS = [
+    os.path.join( "/srv/", "tenants/%s/static" ),
+]
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+        "rest_framework.filters.OrderingFilter",
+        "rest_framework.filters.SearchFilter",
+    ],
+    "SEARCH_PARAM": "query",
+}

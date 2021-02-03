@@ -31,14 +31,3 @@ class MeetingSerializer(WritableNestedModelSerializer):
     class Meta:
         model = Meeting
         fields = "__all__"
-
-    def xxxxupdate(self, instance, validated_data):
-        __import__('ipdb').set_trace()
-        location = validated_data.pop('location')
-        super().update(instance, validated_data)
-        if location is None:
-            instance.location = Location.objects.get(pk=location["pk"])
-        instance.save()
-
-
-#m = Meeting.objects.filter(time_range__overlap=('2021-2-2 17:33:00', '2021-2-2 17:34:00')).first()

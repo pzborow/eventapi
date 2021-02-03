@@ -9,15 +9,16 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND
 from rest_framework.viewsets import GenericViewSet
 
+from events.filters import MeetingFilter
+from events.serializers import MeetingSerializer
 
-logger = logging.getLogger(__name__)
+from events.models import Meeting
 
 
-class FileList(ListModelMixin, GenericViewSet):
+class MeetingList(ListModelMixin, GenericViewSet):
     queryset = Meeting.objects.all()
-    serializer_class = FileSerializer
-    filterset_class = FileFilter
-    permission_classes = [IsPermitted]
-    filter_fields = ("id", "real_name", "operation_status")
-    ordering_fields = ("id", "real_name", "operation_status")
-    search_fields = ("id", "real_name")
+    serializer_class = MeetingSerializer
+    filterset_class = MeetingFilter
+    # permission_classes = [IsPermitted]
+    filter_fields = ("location_id", "day")
+    search_fields = ("meeting_agenda", "event_name")
