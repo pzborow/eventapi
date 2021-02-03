@@ -2,19 +2,35 @@
 
 ## Description
 
-This project show basic usage Django, DRF, DateTimeRangeField.
+This project shows basic usage Django,
+DRF, DateTimeRangeField and Django-tenants.
+
+
+## Assumptions and goals
+
+
+This project is rather POC than ready for use code.
+The purpose for which it was created was to meet the
+requirements of the task, but also for fun and learning the 
+multitenant approach. I tried to keep business requirements,
+but I feel free with architecture and simplification tips.
+
 
 ## Folder structure 
 
-Brief contains task brief, with project cryteria. `eventapi` directory contains all necessary files for
+`brief` contains task brief, with task criteria. `eventapi` directory contains all necessary files for
 django application, with tests and docker's files to simplify start-up.
+Application structure bases on django-tenats teneant_tutorial.
 
-## Installation and test
 
-Project provides docker-compose file to simplify start-up. It provides postgres container and web container with
+## Installation,start and test
+
+Project provides docker-compose file to simplify start-up.
+It provides postgres container and web container with
 python and django.
 
-To startup project simple execute (you should have installed docker and docker-compose)
+To startup project simple execute (you should have already
+installed docker and docker-compose)
 
     :::bash
     cd eventapi
@@ -28,7 +44,24 @@ You may also run tests
     docker-compose run web runtest
 
 
+## Basic usage
+
+To test tenant, you may add to your `hosts` file different
+domains pointing to local server. F.e:
+
+    :::txt
+    127.0.0.1 first.test.com
+    127.0.0.1 second.test.com
+
+Next call command `./manage.py create_tenant` to add these two
+clients with domains.
+
+Finally, make API calls to one of two domains. You should see
+separated data for every client/ tenant.
+
+
 ## Knowing issues
 
-At first run application can't connect to database. Application container tires connect to database but database isn't started yet. Rerun
+At first run application can't connect to database. Application container
+tires connect to database but database isn't started yet. Rerun
 `docker-compose up` temporary solve problem.

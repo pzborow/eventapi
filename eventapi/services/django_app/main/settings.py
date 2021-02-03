@@ -1,4 +1,4 @@
-# Django settings for tenant_tutorial project.
+# Django settings for main project.
 import sys
 import os
 
@@ -21,9 +21,9 @@ sys.path.insert(0, TENANT_APPS_DIR)
 DATABASES = {
     'default': {
         'ENGINE': 'django_tenants.postgresql_backend',  # Add 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.environ.get('PG_DATABASE', 'tenant_tutorial'),
-        'USER': os.environ.get('PG_USER', 'tenant_tutorial'),
-        'PASSWORD': os.environ.get('PG_PASS', 'qwerty'),
+        'NAME': os.environ.get('PG_DATABASE', 'eventapi'),
+        'USER': os.environ.get('PG_USER', 'postgres'),
+        'PASSWORD': os.environ.get('PG_PASS', 'a_password'),
         'HOST': os.environ.get('PG_HOST', 'localhost'),
         'PORT': os.environ.get('PG_PORT', '5432'),
     }
@@ -37,7 +37,7 @@ ALLOWED_HOSTS = ['*']
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'UTC'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -101,7 +101,7 @@ DATABASE_ROUTERS = (
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 MIDDLEWARE = (
-    'tenant_tutorial.middleware.TenantTutorialMiddleware',
+    'main.middleware.TenantTutorialMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -140,26 +140,26 @@ TEMPLATES = [
         },
     },
 ]
-ROOT_URLCONF = 'tenant_tutorial.urls_tenants'
-PUBLIC_SCHEMA_URLCONF = 'tenant_tutorial.urls_public'
+ROOT_URLCONF = 'main.urls_tenants'
+PUBLIC_SCHEMA_URLCONF = 'main.urls_public'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'tenant_tutorial.wsgi.application'
+WSGI_APPLICATION = 'main.wsgi.application'
 
 SHARED_APPS = (
     'django_tenants',  # mandatory
     'customers',  # you must list the app where your tenant model resides in
 
-    'django.contrib.admin',
-    'django.contrib.auth',
+    # 'django.contrib.admin',
+    # 'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # 'django.contrib.sessions',
+    # 'django.contrib.messages',
+    # 'django.contrib.staticfiles',
 )
 
 TENANT_APPS = (
-    'django.contrib.contenttypes',
+    # 'django.contrib.contenttypes',
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.sessions',
