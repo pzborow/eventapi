@@ -146,16 +146,13 @@ PUBLIC_SCHEMA_URLCONF = 'main.urls_public'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'main.wsgi.application'
 
+AUTH_USER_MODEL = 'users.User'
+
 SHARED_APPS = (
     'django_tenants',  # mandatory
     'tenants',  # you must list the app where your tenant model resides in
 
-    # 'django.contrib.admin',
-    # 'django.contrib.auth',
     'django.contrib.contenttypes',
-    # 'django.contrib.sessions',
-    # 'django.contrib.messages',
-    # 'django.contrib.staticfiles',
 )
 
 TENANT_APPS = (
@@ -164,7 +161,9 @@ TENANT_APPS = (
     'django.contrib.admin',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'tenant_only',
+    'timezone_field',
+    'users',
+    'events',
 )
 
 TENANT_MODEL = "tenants.Client"  # app.Model
@@ -174,7 +173,6 @@ TENANT_DOMAIN_MODEL = "tenants.Domain"  # app.Model
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
-
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 

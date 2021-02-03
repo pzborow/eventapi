@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from tenant_only.models import TableTwo
+from events.models import TableTwo
 
 
 class Command(BaseCommand):
