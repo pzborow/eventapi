@@ -6,6 +6,9 @@
 This project shows basic usage Django,
 DRF, DateTimeRangeField and Django-tenants.
 
+It was written as a recruitment task. I gave myself a fixed amount of time for it and did as much as I could
+within that time; the task brief is in `brief/`.
+
 
 ## Assumptions and goals
 
